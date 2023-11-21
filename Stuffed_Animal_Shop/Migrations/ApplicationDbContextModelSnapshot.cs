@@ -2,8 +2,8 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Oracle.EntityFrameworkCore.Metadata;
 using Stuffed_Animal_Shop.Data;
 
 #nullable disable
@@ -20,15 +20,15 @@ namespace Stuffed_Animal_Shop.Migrations
                 .HasAnnotation("ProductVersion", "7.0.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            OracleModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("CategoryProduct", b =>
                 {
                     b.Property<Guid>("CategoriesCategoryId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("raw(16)");
 
                     b.Property<Guid>("ProductsProductId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("raw(16)");
 
                     b.HasKey("CategoriesCategoryId", "ProductsProductId");
 
@@ -40,7 +40,7 @@ namespace Stuffed_Animal_Shop.Migrations
             modelBuilder.Entity("Stuffed_Animal_Shop.Models.Cart", b =>
                 {
                     b.Property<Guid>("CartId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("raw(16)");
 
                     b.HasKey("CartId");
 
@@ -50,32 +50,32 @@ namespace Stuffed_Animal_Shop.Migrations
             modelBuilder.Entity("Stuffed_Animal_Shop.Models.CartItem", b =>
                 {
                     b.Property<Guid>("CartItemId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("raw(16)");
 
                     b.Property<Guid>("CartId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("raw(16)");
 
                     b.Property<string>("Color")
                         .IsRequired()
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar2(10)");
 
                     b.Property<int>("Count")
                         .HasColumnType("int");
 
                     b.Property<string>("Image")
                         .IsRequired()
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("nvarchar2(200)");
 
                     b.Property<int>("ItemPrice")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar2(100)");
 
                     b.Property<string>("Size")
                         .IsRequired()
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar2(10)");
 
                     b.HasKey("CartItemId");
 
@@ -88,14 +88,14 @@ namespace Stuffed_Animal_Shop.Migrations
                 {
                     b.Property<Guid>("CategoryId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("raw(16)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar2(50)");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime");
+                        .HasColumnType("timestamp");
 
                     b.HasKey("CategoryId");
 
@@ -106,14 +106,14 @@ namespace Stuffed_Animal_Shop.Migrations
                 {
                     b.Property<Guid>("ColorId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("raw(16)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar2(10)");
 
                     b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("raw(16)");
 
                     b.HasKey("ColorId");
 
@@ -126,20 +126,20 @@ namespace Stuffed_Animal_Shop.Migrations
                 {
                     b.Property<Guid>("ImageId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("raw(16)");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime");
+                        .HasColumnType("timestamp");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("raw(16)");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime");
+                        .HasColumnType("timestamp");
 
                     b.HasKey("ImageId");
 
@@ -152,20 +152,20 @@ namespace Stuffed_Animal_Shop.Migrations
                 {
                     b.Property<Guid>("OrderId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("raw(16)");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime");
+                        .HasColumnType("timestamp");
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar2(100)");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime");
+                        .HasColumnType("timestamp");
 
                     b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("raw(16)");
 
                     b.HasKey("OrderId");
 
@@ -178,35 +178,35 @@ namespace Stuffed_Animal_Shop.Migrations
                 {
                     b.Property<Guid>("OrderItemId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("raw(16)");
 
                     b.Property<string>("Color")
                         .IsRequired()
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar2(10)");
 
                     b.Property<int>("Count")
                         .HasColumnType("int");
 
                     b.Property<string>("Image")
                         .IsRequired()
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("nvarchar2(200)");
 
                     b.Property<int>("ItemPrice")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar2(100)");
 
                     b.Property<Guid>("OrderId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("raw(16)");
 
                     b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("RAW(16)");
 
                     b.Property<string>("Size")
                         .IsRequired()
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar2(10)");
 
                     b.HasKey("OrderItemId");
 
@@ -219,22 +219,22 @@ namespace Stuffed_Animal_Shop.Migrations
                 {
                     b.Property<Guid>("ProductId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("raw(16)");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime");
+                        .HasColumnType("timestamp");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(300)");
+                        .HasColumnType("nvarchar2(300)");
 
                     b.Property<string>("MainImage")
                         .IsRequired()
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("nvarchar2(200)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar2(100)");
 
                     b.Property<int>("Price")
                         .HasColumnType("int");
@@ -246,7 +246,7 @@ namespace Stuffed_Animal_Shop.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime");
+                        .HasColumnType("timestamp");
 
                     b.HasKey("ProductId");
 
@@ -257,20 +257,20 @@ namespace Stuffed_Animal_Shop.Migrations
                 {
                     b.Property<Guid>("ReviewId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("raw(16)");
 
                     b.Property<string>("Comment")
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar2(100)");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime");
+                        .HasColumnType("timestamp");
 
                     b.Property<string>("EmailUser")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar2(100)");
 
                     b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("raw(16)");
 
                     b.Property<int?>("Rating")
                         .HasColumnType("int");
@@ -286,14 +286,14 @@ namespace Stuffed_Animal_Shop.Migrations
                 {
                     b.Property<Guid>("SizeId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("raw(16)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar2(10)");
 
                     b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("raw(16)");
 
                     b.HasKey("SizeId");
 
@@ -306,41 +306,37 @@ namespace Stuffed_Animal_Shop.Migrations
                 {
                     b.Property<Guid>("UserId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("raw(16)");
 
                     b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar2(100)");
 
                     b.Property<string>("Avatar")
-                        .IsRequired()
-                        .HasColumnType("varchar(300)");
+                        .HasColumnType("varchar2(300)");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime");
+                        .HasColumnType("timestamp");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar2(50)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar2(50)");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar2(100)");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(12)");
+                        .HasColumnType("nvarchar2(12)");
 
                     b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("varchar(10)");
+                        .HasColumnType("varchar2(10)");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime");
+                        .HasColumnType("timestamp");
 
                     b.HasKey("UserId");
 

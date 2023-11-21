@@ -140,7 +140,7 @@
                                             <div class="d-flex gap-2 align-items-center text-black p-0" style="font-size: 16px">
                                                 <span>@ViewBag.User.Name</span>
                                                 @{
-                                                    if (@ViewBag.User.Avatar != "")
+                                                    if (@ViewBag.User.Avatar != null && ViewBag.User.Avatar != "")
                                                     {
                                                         
                                                         <img src="@ViewBag.User.Avatar" class="rounded-circle" style="width: 42px; height: 42px; object-fit: cover" alt="" />

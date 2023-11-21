@@ -26,109 +26,109 @@ namespace Stuffed_Animal_Shop.Controllers
 			_userService = new UserService(context);
 		}
 
-		[Authorize(Roles = "Admin, User")]
-		[Route("/profile/{UserId}")]
-		public IActionResult Index()
-		{
-			var userEmail = this.HttpContext.User.FindFirst(ClaimTypes.Email)?.Value;
+		//[Authorize(Roles = "Admin, User")]
+		//[Route("/profile/{UserId}")]
+		//public IActionResult Index()
+		//{
+		//	var userEmail = this.HttpContext.User.FindFirst(ClaimTypes.Email)?.Value;
 
-			var user = this._userService.GetUserByEmail(userEmail);
+		//	var user = this._userService.GetUserByEmail(userEmail);
 
-			var userEdit = new UserEdit
-			(
-				userId: user.UserId,
-				name: user.Name,
-				email: user.Email,
-				address: user.Address,
-				phoneNumber: user.PhoneNumber,
-				avatar: null
-			);
+		//	var userEdit = new UserEdit
+		//	(
+		//		userId: user.UserId,
+		//		name: user.Name,
+		//		email: user.Email,
+		//		address: user.Address,
+		//		phoneNumber: user.PhoneNumber,
+		//		avatar: null
+		//	);
 
-            if (user != null)
-            {
-                ViewBag.User = user;
-            }
+  //          if (user != null)
+  //          {
+  //              ViewBag.User = user;
+  //          }
 
-            //this.ViewBag.Message = "Temp!";
+  //          //this.ViewBag.Message = "Temp!";
 
-            return this.View(userEdit);
-		}
+  //          return this.View(userEdit);
+		//}
 
-		[Authorize(Roles = "Admin, User")]
-		[HttpPost("/profile/{UserId}")]
-		public async Task<IActionResult> Index([FromRoute] string UserId, UserEdit userEdit)
-		{
-			//			Finish this yeah
+		//[Authorize(Roles = "Admin, User")]
+		//[HttpPost("/profile/{UserId}")]
+		//public async Task<IActionResult> Index([FromRoute] string UserId, UserEdit userEdit)
+		//{
+		//	//			Finish this yeah
 
-			for (int i = 0; i < 5; i++)
-			{
-				Console.WriteLine("\n");
-			}
-			Console.WriteLine(userEdit.Email);
+		//	for (int i = 0; i < 5; i++)
+		//	{
+		//		Console.WriteLine("\n");
+		//	}
+		//	Console.WriteLine(userEdit.Email);
 
-			string imageUrl = "";
+		//	string imageUrl = "";
 
-			if (userEdit.Avatar != null)
-			{
-				var image = _photoService.AddPhotoAsync(userEdit.Avatar);
-				imageUrl = image.Url.ToString();
-			}
+		//	if (userEdit.Avatar != null)
+		//	{
+		//		var image = _photoService.AddPhotoAsync(userEdit.Avatar);
+		//		imageUrl = image.Url.ToString();
+		//	}
 
-			if (!this.ModelState.IsValid)
-			{
-				Console.WriteLine("INVALID!");
+		//	if (!this.ModelState.IsValid)
+		//	{
+		//		Console.WriteLine("INVALID!");
 
-				return this.View(userEdit);
-			}
+		//		return this.View(userEdit);
+		//	}
 
-			if (_userService.UserExsisted(userEdit.Email) &&
-				!_context.Users.Any(u => 
-					u.UserId == userEdit.UserId && 
-					u.Email == userEdit.Email))
-			{
+		//	if (_userService.UserExsisted(userEdit.Email) &&
+		//		!_context.Users.Any(u => 
+		//			u.UserId == userEdit.UserId && 
+		//			u.Email == userEdit.Email))
+		//	{
 
-				Console.WriteLine("UserExsisted True!");
+		//		Console.WriteLine("UserExsisted True!");
 
-				this.ModelState.AddModelError("Email", "Email existed!");
+		//		this.ModelState.AddModelError("Email", "Email existed!");
 				
-				return this.View(userEdit);
-			}
+		//		return this.View(userEdit);
+		//	}
 
-			try
-			{
-				var user = _context.Users.Find(userEdit.UserId);
+		//	try
+		//	{
+		//		var user = _context.Users.Find(userEdit.UserId);
 
-				user.Email = userEdit.Email;
-				user.Name = userEdit.Name;
-				user.PhoneNumber = userEdit.PhoneNumber;
-				user.Address = userEdit.Address;
+		//		user.Email = userEdit.Email;
+		//		user.Name = userEdit.Name;
+		//		user.PhoneNumber = userEdit.PhoneNumber;
+		//		user.Address = userEdit.Address;
 
-				if (imageUrl != "")
-				{
-					Console.WriteLine("imageUrl EXISTS");
+		//		if (imageUrl != "")
+		//		{
+		//			Console.WriteLine("imageUrl EXISTS");
 
-					if (user.Avatar != "") 
-					{
-						var imageID = this._photoService.GetPublicId(imageUrl: user.Avatar);
-						await this._photoService.DeletePhotoAsync(imageID);
-					}
+		//			if (user.Avatar != "") 
+		//			{
+		//				var imageID = this._photoService.GetPublicId(imageUrl: user.Avatar);
+		//				await this._photoService.DeletePhotoAsync(imageID);
+		//			}
 
-					user.Avatar = imageUrl;
-				}
+		//			user.Avatar = imageUrl;
+		//		}
 
-				_context.Users.Update(user);
-				await _context.SaveChangesAsync();
-			}
-			catch (Exception ex)
-			{
-				this.ViewBag.Message = ex.Message;
+		//		_context.Users.Update(user);
+		//		await _context.SaveChangesAsync();
+		//	}
+		//	catch (Exception ex)
+		//	{
+		//		this.ViewBag.Message = ex.Message;
 
-				return this.View();
-			}
+		//		return this.View();
+		//	}
 
-			this.ViewBag.Message = "Profile updated successfully!";
+		//	this.ViewBag.Message = "Profile updated successfully!";
 
-			return this.View();
-		}
+		//	return this.View();
+		//}
 	}
 }

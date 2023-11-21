@@ -10,12 +10,12 @@ namespace Stuffed_Animal_Shop.Models
         }
 
         [Key]
-        [Column(TypeName = "uniqueidentifier")]
+        [Column(TypeName = "raw(16)")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid ProductId { get; set; }
 
         [Required]
-        [Column(TypeName = "nvarchar(100)")]
+        [Column(TypeName = "nvarchar2(100)")]
         [MinLength(1)]
         public string Name { get; set; }
 
@@ -31,17 +31,17 @@ namespace Stuffed_Animal_Shop.Models
         public int Sold { get; set; } = 0;
 
         [Required]
-        [Column(TypeName = "nvarchar(300)")]
+        [Column(TypeName = "nvarchar2(300)")]
         public string Description { get; set; }
 
         [Required]
-        [Column(TypeName = "nvarchar(200)")]
+        [Column(TypeName = "nvarchar2(200)")]
         public string MainImage { get; set; }
 
-        [Column(TypeName = "datetime")]
+        [Column(TypeName = "timestamp")]
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
-        [Column(TypeName = "datetime")]
+        [Column(TypeName = "timestamp")]
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
         public virtual CartItem CartItem { get; set; }

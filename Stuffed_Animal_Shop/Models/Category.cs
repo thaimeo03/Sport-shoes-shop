@@ -10,17 +10,17 @@ namespace Stuffed_Animal_Shop.Models
             this.Products = new HashSet<Product>();
         }
 
-        [Key]
-        [Column(TypeName = "uniqueidentifier")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid CategoryId { get; set; }
+		[Key]
+		[Column(TypeName = "raw(16)")]
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+		public Guid CategoryId { get; set; }
 
-        [Required]
-        [Column(TypeName = "nvarchar(50)")]
-        [MinLength(1)]
-        public string Name { get; set; }
+		[Required]
+		[Column(TypeName = "nvarchar2(50)")]
+		[MinLength(1)]
+		public string Name { get; set; }
 
-        [Column(TypeName = "datetime")]
+		[Column(TypeName = "timestamp")]
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
         public virtual ICollection<Product> Products { get; set; }

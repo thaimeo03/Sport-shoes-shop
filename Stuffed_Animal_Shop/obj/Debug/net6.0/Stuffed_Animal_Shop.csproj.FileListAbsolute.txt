@@ -1806,3 +1806,13 @@ D:\ASP\Testing\Stuffed_Animal_Shop\obj\Debug\net6.0\scopedcss\projectbundle\Stuf
 D:\ASP\Testing\Stuffed_Animal_Shop\obj\Debug\net6.0\Stuffed_Animal_Shop.csproj.CopyComplete
 D:\ASP\Testing\Stuffed_Animal_Shop\obj\Debug\net6.0\Stuffed_Animal_Shop.genruntimeconfig.cache
 D:\ASP\Testing\Stuffed_Animal_Shop\obj\Debug\net6.0\ref\Stuffed_Animal_Shop.dll
+E:\C#\Stuffed_Animal_Shop\Stuffed_Animal_Shop\bin\Debug\net6.0\Oracle.EntityFrameworkCore.dll
+E:\C#\Stuffed_Animal_Shop\Stuffed_Animal_Shop\bin\Debug\net6.0\Oracle.ManagedDataAccess.dll
+E:\C#\Stuffed_Animal_Shop\Stuffed_Animal_Shop\bin\Debug\net6.0\System.Diagnostics.PerformanceCounter.dll
+E:\C#\Stuffed_Animal_Shop\Stuffed_Animal_Shop\bin\Debug\net6.0\System.DirectoryServices.dll
+E:\C#\Stuffed_Animal_Shop\Stuffed_Animal_Shop\bin\Debug\net6.0\System.DirectoryServices.Protocols.dll
+E:\C#\Stuffed_Animal_Shop\Stuffed_Animal_Shop\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Diagnostics.PerformanceCounter.dll
+E:\C#\Stuffed_Animal_Shop\Stuffed_Animal_Shop\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.DirectoryServices.dll
+E:\C#\Stuffed_Animal_Shop\Stuffed_Animal_Shop\bin\Debug\net6.0\runtimes\linux\lib\net6.0\System.DirectoryServices.Protocols.dll
+E:\C#\Stuffed_Animal_Shop\Stuffed_Animal_Shop\bin\Debug\net6.0\runtimes\osx\lib\net6.0\System.DirectoryServices.Protocols.dll
+E:\C#\Stuffed_Animal_Shop\Stuffed_Animal_Shop\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.DirectoryServices.Protocols.dll

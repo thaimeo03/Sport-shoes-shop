@@ -6,14 +6,14 @@ namespace Stuffed_Animal_Shop.Models
     public class OrderItem
     {
         [Key]
-        [Column(TypeName = "uniqueidentifier")]
+        [Column(TypeName = "raw(16)")]
         public Guid OrderItemId { get; set; }
 
         [Required]
         public Guid ProductId { get; set; }
 
         [Required]
-        [Column(TypeName = "nvarchar(100)")]
+        [Column(TypeName = "nvarchar2(100)")]
         [MinLength(1)]
         public string Name { get; set; }
 
@@ -22,15 +22,15 @@ namespace Stuffed_Animal_Shop.Models
         public int Count { get; set; }
 
         [Required]
-        [Column(TypeName = "nvarchar(10)")]
+        [Column(TypeName = "nvarchar2(10)")]
         public string Size { get; set; }
 
         [Required]
-        [Column(TypeName = "nvarchar(10)")]
+        [Column(TypeName = "nvarchar2(10)")]
         public string Color { get; set; }
 
         [Required]
-        [Column(TypeName = "nvarchar(200)")]
+        [Column(TypeName = "nvarchar2(200)")]
         public string Image { get; set; }
 
         [Required]

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Oracle.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Stuffed_Animal_Shop.Models;
 
 namespace Stuffed_Animal_Shop.Data
@@ -8,7 +9,7 @@ namespace Stuffed_Animal_Shop.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {}
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> Users { get; set; } 
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -19,7 +20,5 @@ namespace Stuffed_Animal_Shop.Data
         public DbSet<Size> Sizes { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<Image> Images { get; set; }
-
-
-    }
+	}
 }

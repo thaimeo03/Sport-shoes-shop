@@ -7,9 +7,9 @@ namespace Stuffed_Animal_Shop.Models
     {
 
         [Key]
-        [Column(TypeName = "uniqueidentifier")]
+		[Column(TypeName = "raw(16)")]
         [ForeignKey("User")]
-        public Guid CartId { get; set; }
+		public Guid CartId { get; set; }
 
         public virtual User User { get; set; }
     }

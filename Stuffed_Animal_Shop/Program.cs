@@ -20,17 +20,23 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         option.ExpireTimeSpan = TimeSpan.FromMinutes(60);
     });
 
+//builder.Services.AddDbContext<ApplicationDbContext>(options =>
+//options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+options.UseOracle("User Id=hr; Password=123; Data Source=localhost:1521/orcl;"));
 
 builder.Services.AddTransient<ReviewViewComponent>();
 
+//var serviceProvider = new ServiceCollection().AddDbContext<ApplicationDbContext>
+//    (options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))).BuildServiceProvider();
+
 var serviceProvider = new ServiceCollection().AddDbContext<ApplicationDbContext>
-    (options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))).BuildServiceProvider();
+    (options => options.UseOracle("User Id=hr; Password=123; Data Source=localhost:1521/orcl;")).BuildServiceProvider();
 
 var context = serviceProvider.GetRequiredService<ApplicationDbContext>();
 var seedData = new SeedData(context);
-/*seedData.GenerateData(10, 50, 8, 9); */ // Fake data
+/*seedData.GenerateData(10, 100, 8, 9);*/  // Fake data
 
 var app = builder.Build();
 
