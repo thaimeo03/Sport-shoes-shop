@@ -24,7 +24,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 //options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-options.UseOracle("User Id=hr; Password=123; Data Source=localhost:1521/orcl;"));
+options.UseOracle("User Id=Nhom3; Password=1212; Data Source=localhost:1521/orcl;"));
 
 builder.Services.AddTransient<ReviewViewComponent>();
 
@@ -32,11 +32,11 @@ builder.Services.AddTransient<ReviewViewComponent>();
 //    (options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))).BuildServiceProvider();
 
 var serviceProvider = new ServiceCollection().AddDbContext<ApplicationDbContext>
-    (options => options.UseOracle("User Id=hr; Password=123; Data Source=localhost:1521/orcl;")).BuildServiceProvider();
+    (options => options.UseOracle("User Id=Nhom3; Password=1212; Data Source=localhost:1521/orcl;")).BuildServiceProvider();
 
 var context = serviceProvider.GetRequiredService<ApplicationDbContext>();
 var seedData = new SeedData(context);
-/*seedData.GenerateData(10, 100, 8, 9);*/  // Fake data
+//seedData.GenerateData(10, 100, 8, 9);  // Fake data
 
 var app = builder.Build();
 
